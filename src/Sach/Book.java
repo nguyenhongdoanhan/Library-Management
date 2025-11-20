@@ -4,7 +4,7 @@ public class Book {
 private int id; // Mã sác
 private String title; // Tên sách
 private int authorId; // Mã tác giả
-private int publisherId; // Mã nhà xuất bản
+private int publisherId; // Mã nhà xuất bản 
 private int categoryId; // Mã thể loại
 private int year; // Năm xuất bản
 private double price; // Giá sách

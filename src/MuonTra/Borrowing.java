@@ -14,7 +14,7 @@ private String status; // Trạng thái
 
 public Borrowing() {}
 
-public Borrowing(int id, int readerId, int bookId, int staffId, Date borrowDate, Date returnDate, String status) {
+public Borrowing(int id, int readerId, int bookId, int staffId, Date borrowDate, Date returnDate, String status) { 
     this.id = id;
     this.readerId = readerId;
     this.bookId = bookId;

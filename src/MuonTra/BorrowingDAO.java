@@ -12,7 +12,7 @@ public class BorrowingDAO {
 
     // Lấy danh sách tất cả phiếu mượn
     public List<Borrowing> getAllBorrowings() {
-        List<Borrowing> list = new ArrayList<>();
+        List<Borrowing> list = new ArrayList<>(); 
         String sql = "SELECT * FROM borrowing";
 
         try (Connection conn = DBConnect.getConnection();
