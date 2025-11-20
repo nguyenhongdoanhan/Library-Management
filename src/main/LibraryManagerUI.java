@@ -59,7 +59,7 @@ public class LibraryManagerUI extends javax.swing.JPanel implements java.beans.C
         SwingUtilities.invokeLater(() -> {
             JFrame frame = new JFrame("Quản lý Thư viện");
             frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-            frame.setSize(1000, 700);
+            frame.setSize(1000, 700); 
             frame.setLocationRelativeTo(null);
             frame.setContentPane(new LibraryManagerUI());
             frame.setVisible(true);
