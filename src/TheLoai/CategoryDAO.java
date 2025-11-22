@@ -16,15 +16,13 @@ public class CategoryDAO {
         List<Category> list = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Category category = new Category(
-                    rs.getInt("category_id"),
-                    rs.getString("name"),
-                    rs.getString("description")
+                        rs.getInt("category_id"),
+                        rs.getString("name"),
+                        rs.getString("description")
                 );
                 list.add(category);
             }
@@ -39,12 +37,11 @@ public class CategoryDAO {
     // Thêm thể loại mới
     public boolean insertCategory(Category category) {
         String sql = "INSERT INTO category (name, description) VALUES (?, ?)";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, category.getName());
             stmt.setString(2, category.getDescription());
-            
+
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -55,13 +52,12 @@ public class CategoryDAO {
     // Cập nhật thông tin thể loại
     public boolean updateCategory(Category category) {
         String sql = "UPDATE category SET name=?, description=? WHERE category_id=?";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
-            
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
+
             stmt.setString(1, category.getName());
             stmt.setString(2, category.getDescription());
             stmt.setInt(3, category.getId());
-            
+
             return stmt.executeUpdate() > 0;
         } catch (SQLException e) {
             e.printStackTrace();
@@ -76,8 +72,7 @@ public class CategoryDAO {
         bookDAO.setCategoryIdToNullByCategoryId(categoryId);
 
         String sql = "DELETE FROM category WHERE category_id=?";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, categoryId);
             return stmt.executeUpdate() > 0;

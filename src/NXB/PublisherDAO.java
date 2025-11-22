@@ -16,16 +16,14 @@ public class PublisherDAO {
         List<Publisher> list = new ArrayList<>();
         String sql = "SELECT * FROM publisher";
 
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql);
-             ResultSet rs = stmt.executeQuery()) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql); ResultSet rs = stmt.executeQuery()) {
 
             while (rs.next()) {
                 Publisher publisher = new Publisher(
-                    rs.getInt("publisher_id"),
-                    rs.getString("name"),
-                    rs.getString("address"),
-                    rs.getString("phone")
+                        rs.getInt("publisher_id"),
+                        rs.getString("name"),
+                        rs.getString("address"),
+                        rs.getString("phone")
                 );
                 list.add(publisher);
             }
@@ -40,8 +38,7 @@ public class PublisherDAO {
     // Thêm nhà xuất bản mới
     public boolean insertPublisher(Publisher publisher) {
         String sql = "INSERT INTO publisher (name, address, phone) VALUES (?, ?, ?)";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, publisher.getName());
             stmt.setString(2, publisher.getAddress());
@@ -57,8 +54,7 @@ public class PublisherDAO {
     // Cập nhật thông tin nhà xuất bản
     public boolean updatePublisher(Publisher publisher) {
         String sql = "UPDATE publisher SET name=?, address=?, phone=? WHERE publisher_id=?";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setString(1, publisher.getName());
             stmt.setString(2, publisher.getAddress());
@@ -79,8 +75,7 @@ public class PublisherDAO {
         bookDAO.setPublisherIdToNullByPublisherId(publisherId);
 
         String sql = "DELETE FROM publisher WHERE publisher_id=?";
-        try (Connection conn = DBConnect.getConnection();
-             PreparedStatement stmt = conn.prepareStatement(sql)) {
+        try (Connection conn = DBConnect.getConnection(); PreparedStatement stmt = conn.prepareStatement(sql)) {
 
             stmt.setInt(1, publisherId);
             return stmt.executeUpdate() > 0;

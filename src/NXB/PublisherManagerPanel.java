@@ -76,25 +76,50 @@ public class PublisherManagerPanel extends JPanel {
         }
 
         // Thêm các components vào panel nhập liệu với GridBagLayout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Mã NXB:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfId, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Tên NXB:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfName, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Địa chỉ:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 1; gbc.gridwidth = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Field span and weight
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Field span and weight
         inputPanel.add(tfAddress, gbc);
         gbc.gridwidth = 1; // Reset gridwidth
 
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("SĐT:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 2; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfPhone, gbc);
 
         // ====== GỘP PANEL TÌM KIẾM VÀ NHẬP LIỆU Ở TRÊN ======
@@ -107,7 +132,7 @@ public class PublisherManagerPanel extends JPanel {
         // ====== BẢNG HIỂN THỊ DỮ LIỆU ======
         // Khởi tạo tableModel với các cột và không cho phép sửa trực tiếp
         tableModel = new DefaultTableModel(new String[]{
-                "Mã NXB", "Tên NXB", "Địa chỉ", "SĐT"
+            "Mã NXB", "Tên NXB", "Địa chỉ", "SĐT"
         }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -128,7 +153,7 @@ public class PublisherManagerPanel extends JPanel {
         table.getColumnModel().getColumn(1).setPreferredWidth(150); // Tên NXB
         table.getColumnModel().getColumn(2).setPreferredWidth(250); // Địa chỉ
         table.getColumnModel().getColumn(3).setPreferredWidth(100); // SĐT
-        
+
         // Thêm thanh cuộn cho bảng
         JScrollPane scrollPane = new JScrollPane(table);
         // Đặt bảng vào giữa panel chính
@@ -199,7 +224,7 @@ public class PublisherManagerPanel extends JPanel {
             String address = p.getAddress() != null ? p.getAddress() : "(Không xác định)";
             String phone = p.getPhone() != null ? p.getPhone() : "(Không xác định)";
             tableModel.addRow(new Object[]{
-                    p.getId(), name, address, phone
+                p.getId(), name, address, phone
             });
         }
         clearInputFields(); // Xóa trắng ô nhập sau khi tải lại
@@ -208,10 +233,10 @@ public class PublisherManagerPanel extends JPanel {
     // Phương thức xử lý thêm nhà xuất bản mới
     private void addPublisher() {
         try {
-             // Kiểm tra các trường bắt buộc
+            // Kiểm tra các trường bắt buộc
             if (tfName.getText().trim().isEmpty() || tfAddress.getText().trim().isEmpty() || tfPhone.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên NXB, Địa chỉ, SĐT).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên NXB, Địa chỉ, SĐT).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Publisher từ dữ liệu nhập liệu (luôn dùng ID 0 cho thêm mới)
             Publisher p = new Publisher(0,
@@ -240,15 +265,15 @@ public class PublisherManagerPanel extends JPanel {
     // Phương thức xử lý cập nhật thông tin nhà xuất bản
     private void updatePublisher() {
         try {
-             // Kiểm tra xem đã chọn nhà xuất bản từ bảng chưa
-             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà xuất bản cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
-              // Kiểm tra các trường bắt buộc
+            // Kiểm tra xem đã chọn nhà xuất bản từ bảng chưa
+            if (tfId.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà xuất bản cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            // Kiểm tra các trường bắt buộc
             if (tfName.getText().trim().isEmpty() || tfAddress.getText().trim().isEmpty() || tfPhone.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên NXB, Địa chỉ, SĐT).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên NXB, Địa chỉ, SĐT).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Publisher từ dữ liệu nhập liệu (bao gồm ID)
             Publisher p = new Publisher(
@@ -270,7 +295,7 @@ public class PublisherManagerPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại.");
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã nhà xuất bản không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã nhà xuất bản không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật nhà xuất bản: " + ex.getMessage());
@@ -280,11 +305,11 @@ public class PublisherManagerPanel extends JPanel {
     // Phương thức xử lý xóa nhà xuất bản
     private void deletePublisher() {
         try {
-             // Kiểm tra xem đã chọn nhà xuất bản từ bảng chưa
+            // Kiểm tra xem đã chọn nhà xuất bản từ bảng chưa
             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà xuất bản cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn nhà xuất bản cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             // Lấy ID nhà xuất bản cần xóa
             int id = Integer.parseInt(tfId.getText());
             // Hiển thị hộp thoại xác nhận xóa
@@ -305,7 +330,7 @@ public class PublisherManagerPanel extends JPanel {
                 }
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã nhà xuất bản không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã nhà xuất bản không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi xóa nhà xuất bản: " + ex.getMessage());
@@ -316,7 +341,7 @@ public class PublisherManagerPanel extends JPanel {
     private void searchPublisher() {
         // Lấy từ khóa tìm kiếm và chuyển về chữ thường
         String keyword = tfSearch.getText().trim().toLowerCase();
-         // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
+        // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
         if (keyword.isEmpty()) {
             loadPublishers(); // Tải lại toàn bộ danh sách nếu ô tìm kiếm trống
             return;
@@ -328,13 +353,13 @@ public class PublisherManagerPanel extends JPanel {
         // Duyệt qua danh sách nhà xuất bản để tìm kiếm
         for (Publisher p : publishers) {
             // Kiểm tra nếu từ khóa khớp với bất kỳ trường nào (ID, tên, địa chỉ, SĐT)
-            if (String.valueOf(p.getId()).contains(keyword) ||
-                p.getName().toLowerCase().contains(keyword) ||
-                p.getAddress().toLowerCase().contains(keyword) ||
-                p.getPhone().toLowerCase().contains(keyword)) {
+            if (String.valueOf(p.getId()).contains(keyword)
+                    || p.getName().toLowerCase().contains(keyword)
+                    || p.getAddress().toLowerCase().contains(keyword)
+                    || p.getPhone().toLowerCase().contains(keyword)) {
                 // Thêm hàng dữ liệu nếu khớp
                 tableModel.addRow(new Object[]{
-                        p.getId(), p.getName(), p.getAddress(), p.getPhone()
+                    p.getId(), p.getName(), p.getAddress(), p.getPhone()
                 });
             }
         }
@@ -343,27 +368,34 @@ public class PublisherManagerPanel extends JPanel {
     // ====== CLASS BO GÓC CHO Ô NHẬP ======
     // Lớp nội bộ để tạo hiệu ứng bo tròn cho viền các ô nhập liệu
     static class RoundedBorder extends AbstractBorder {
+
         private int radius;
-        RoundedBorder(int radius) { this.radius = radius; }
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             // Vẽ hình chữ nhật bo góc
             g.setColor(Color.LIGHT_GRAY);
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
+
         @Override
         public Insets getBorderInsets(Component c) {
             // Điều chỉnh khoảng cách nội dung bên trong border
-            return new Insets(this.radius+1, this.radius+1, this.radius+1, this.radius+1);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
         }
+
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             // Điều chỉnh khoảng cách nội dung bên trong border (override)
-            insets.left = insets.right = insets.top = insets.bottom = this.radius+1;
+            insets.left = insets.right = insets.top = insets.bottom = this.radius + 1;
             return insets;
         }
     }
-    
+
     // Phương thức tiện ích để xóa trắng các ô nhập liệu và bật lại ô ID
     private void clearInputFields() {
         tfId.setText("");
@@ -391,4 +423,4 @@ public class PublisherManagerPanel extends JPanel {
             }
         }
     }
-} 
+}
