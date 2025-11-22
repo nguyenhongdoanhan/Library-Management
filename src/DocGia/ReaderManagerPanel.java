@@ -75,30 +75,56 @@ public class ReaderManagerPanel extends JPanel {
         }
 
         // Thêm các components vào panel với GridBagLayout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST;
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
         gbc.weightx = 0; // Label doesn't need weight
         inputPanel.add(new JLabel("Mã độc giả:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Give some weight, but not full
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Give some weight, but not full
         inputPanel.add(tfId, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label doesn't need weight
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label doesn't need weight
         inputPanel.add(new JLabel("Tên độc giả:"), gbc);
-        gbc.gridx = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Give some weight
+        gbc.gridx = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Give some weight
         inputPanel.add(tfName, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0;
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0;
         inputPanel.add(new JLabel("Địa chỉ:"), gbc);
-        gbc.gridx = 1; gbc.gridwidth = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.7; // Adjusted weightx
+        gbc.gridx = 1;
+        gbc.gridwidth = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.7; // Adjusted weightx
         inputPanel.add(tfAddress, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; gbc.gridwidth = 1; // Reset gridwidth, Label doesn't need weight
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0;
+        gbc.gridwidth = 1; // Reset gridwidth, Label doesn't need weight
         inputPanel.add(new JLabel("SĐT:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Give some weight
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Give some weight
         inputPanel.add(tfPhone, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label doesn't need weight
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label doesn't need weight
         inputPanel.add(new JLabel("Email:"), gbc);
-        gbc.gridx = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Give some weight
+        gbc.gridx = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Give some weight
         inputPanel.add(tfEmail, gbc);
 
         // ====== GỘP PANEL TÌM KIẾM VÀ NHẬP LIỆU Ở TRÊN ======
@@ -111,7 +137,7 @@ public class ReaderManagerPanel extends JPanel {
         // ====== BẢNG HIỂN THỊ DỮ LIỆU ======
         // Khởi tạo tableModel với các cột và không cho phép sửa trực tiếp
         tableModel = new DefaultTableModel(new String[]{
-                "Mã Độc giả", "Họ tên", "Địa chỉ", "SĐT", "Email"
+            "Mã Độc giả", "Họ tên", "Địa chỉ", "SĐT", "Email"
         }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -187,8 +213,8 @@ public class ReaderManagerPanel extends JPanel {
 
     // ====== HÀM TẢI DANH SÁCH ĐỘC GIẢ ======
     /**
-     * Tải danh sách độc giả từ database và hiển thị lên bảng
-     * Reset các trường nhập liệu sau khi tải
+     * Tải danh sách độc giả từ database và hiển thị lên bảng Reset các trường
+     * nhập liệu sau khi tải
      */
     private void loadReaders() {
         // Lấy danh sách độc giả từ DAO
@@ -202,7 +228,7 @@ public class ReaderManagerPanel extends JPanel {
             String phone = r.getPhone() != null ? r.getPhone() : "(Không xác định)";
             String email = r.getEmail() != null ? r.getEmail() : "(Không xác định)";
             tableModel.addRow(new Object[]{
-                    r.getId(), name, address, phone, email
+                r.getId(), name, address, phone, email
             });
         }
         clearInputFields(); // Xóa trắng ô nhập sau khi tải lại
@@ -210,15 +236,14 @@ public class ReaderManagerPanel extends JPanel {
 
     // ====== HÀM THÊM ĐỘC GIẢ ======
     /**
-     * Thêm độc giả mới vào database
-     * Kiểm tra dữ liệu đầu vào trước khi thêm
+     * Thêm độc giả mới vào database Kiểm tra dữ liệu đầu vào trước khi thêm
      */
     private void addReader() {
         try {
             // Kiểm tra các trường bắt buộc
             if (tfName.getText().trim().isEmpty() || tfAddress.getText().trim().isEmpty() || tfPhone.getText().trim().isEmpty() || tfEmail.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Họ tên, Địa chỉ, SĐT, Email).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Họ tên, Địa chỉ, SĐT, Email).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Reader từ dữ liệu nhập liệu (luôn dùng ID 0 cho thêm mới)
             Reader r = new Reader(0,
@@ -248,20 +273,20 @@ public class ReaderManagerPanel extends JPanel {
 
     // ====== HÀM SỬA ĐỘC GIẢ ======
     /**
-     * Cập nhật thông tin độc giả đã chọn
-     * Kiểm tra dữ liệu đầu vào trước khi cập nhật
+     * Cập nhật thông tin độc giả đã chọn Kiểm tra dữ liệu đầu vào trước khi cập
+     * nhật
      */
     private void updateReader() {
         try {
-             // Kiểm tra xem đã chọn độc giả từ bảng chưa
-             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn độc giả cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
+            // Kiểm tra xem đã chọn độc giả từ bảng chưa
+            if (tfId.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn độc giả cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             // Kiểm tra các trường bắt buộc
-             if (tfName.getText().trim().isEmpty() || tfAddress.getText().trim().isEmpty() || tfPhone.getText().trim().isEmpty() || tfEmail.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Họ tên, Địa chỉ, SĐT, Email).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+            if (tfName.getText().trim().isEmpty() || tfAddress.getText().trim().isEmpty() || tfPhone.getText().trim().isEmpty() || tfEmail.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Họ tên, Địa chỉ, SĐT, Email).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Reader từ dữ liệu nhập liệu (bao gồm ID)
             Reader r = new Reader(
@@ -285,7 +310,7 @@ public class ReaderManagerPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại.");
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã độc giả không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã độc giả không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật độc giả: " + ex.getMessage());
@@ -294,16 +319,15 @@ public class ReaderManagerPanel extends JPanel {
 
     // ====== HÀM XÓA ĐỘC GIẢ ======
     /**
-     * Xóa độc giả đã chọn khỏi database
-     * Hiển thị xác nhận trước khi xóa
+     * Xóa độc giả đã chọn khỏi database Hiển thị xác nhận trước khi xóa
      */
     private void deleteReader() {
         try {
-             // Kiểm tra xem đã chọn độc giả từ bảng chưa
+            // Kiểm tra xem đã chọn độc giả từ bảng chưa
             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn độc giả cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn độc giả cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             // Lấy ID độc giả cần xóa
             int id = Integer.parseInt(tfId.getText());
             // Hiển thị hộp thoại xác nhận xóa
@@ -324,7 +348,7 @@ public class ReaderManagerPanel extends JPanel {
                 }
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã độc giả không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã độc giả không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi xóa độc giả: " + ex.getMessage());
@@ -333,8 +357,8 @@ public class ReaderManagerPanel extends JPanel {
 
     // ====== HÀM TÌM KIẾM ĐỘC GIẢ ======
     /**
-     * Tìm kiếm độc giả theo từ khóa trên tất cả các trường
-     * Nếu ô tìm kiếm rỗng sẽ hiển thị lại toàn bộ danh sách
+     * Tìm kiếm độc giả theo từ khóa trên tất cả các trường Nếu ô tìm kiếm rỗng
+     * sẽ hiển thị lại toàn bộ danh sách
      */
     private void searchReader() {
         // Lấy từ khóa tìm kiếm và chuyển về chữ thường
@@ -351,14 +375,15 @@ public class ReaderManagerPanel extends JPanel {
         // Duyệt qua danh sách độc giả để tìm kiếm
         for (Reader r : readers) {
             // Kiểm tra nếu từ khóa khớp với bất kỳ trường nào (tên, địa chỉ, SĐT, email)
-            if (String.valueOf(r.getId()).contains(keyword) || // Thêm tìm kiếm theo ID
-                r.getName().toLowerCase().contains(keyword) ||
-                r.getAddress().toLowerCase().contains(keyword) ||
-                r.getPhone().toLowerCase().contains(keyword) ||
-                r.getEmail().toLowerCase().contains(keyword)) { // Thêm tìm kiếm theo email
+            if (String.valueOf(r.getId()).contains(keyword)
+                    || // Thêm tìm kiếm theo ID
+                    r.getName().toLowerCase().contains(keyword)
+                    || r.getAddress().toLowerCase().contains(keyword)
+                    || r.getPhone().toLowerCase().contains(keyword)
+                    || r.getEmail().toLowerCase().contains(keyword)) { // Thêm tìm kiếm theo email
                 // Thêm hàng dữ liệu nếu khớp
                 tableModel.addRow(new Object[]{
-                        r.getId(), r.getName(), r.getAddress(), r.getPhone(), r.getEmail()
+                    r.getId(), r.getName(), r.getAddress(), r.getPhone(), r.getEmail()
                 });
             }
         }
@@ -367,27 +392,34 @@ public class ReaderManagerPanel extends JPanel {
     // ====== CLASS BO GÓC CHO Ô NHẬP ======
     // Lớp nội bộ để tạo hiệu ứng bo tròn cho viền các ô nhập liệu
     static class RoundedBorder extends AbstractBorder {
+
         private int radius;
-        RoundedBorder(int radius) { this.radius = radius; }
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             // Vẽ hình chữ nhật bo góc
             g.setColor(Color.LIGHT_GRAY);
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
+
         @Override
         public Insets getBorderInsets(Component c) {
             // Điều chỉnh khoảng cách nội dung bên trong border
-            return new Insets(this.radius+1, this.radius+1, this.radius+1, this.radius+1);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
         }
+
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             // Điều chỉnh khoảng cách nội dung bên trong border (override)
-            insets.left = insets.right = insets.top = insets.bottom = this.radius+1;
+            insets.left = insets.right = insets.top = insets.bottom = this.radius + 1;
             return insets;
         }
     }
-    
+
     /**
      * Xóa trắng các trường nhập liệu và bật lại ô ID
      */
