@@ -80,29 +80,59 @@ public class StaffManagerPanel extends JPanel {
         cbPosition.setBackground(Color.WHITE);
 
         // Thêm các components vào panel nhập liệu với GridBagLayout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Mã NV:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfStaffId, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Họ tên:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfName, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("SĐT:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfPhone, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Email:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 3;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfEmail, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Chức vụ:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 2; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         // gbc.gridwidth = 3; // Span across remaining columns if needed
         inputPanel.add(cbPosition, gbc);
         // gbc.gridwidth = 1; // Reset gridwidth
@@ -117,7 +147,7 @@ public class StaffManagerPanel extends JPanel {
         // ====== BẢNG HIỂN THỊ DỮ LIỆU ======
         // Khởi tạo tableModel với các cột và không cho phép sửa trực tiếp
         tableModel = new DefaultTableModel(new String[]{
-                "Mã NV", "Họ tên", "Chức vụ", "SĐT", "Email"
+            "Mã NV", "Họ tên", "Chức vụ", "SĐT", "Email"
         }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -131,7 +161,7 @@ public class StaffManagerPanel extends JPanel {
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         table.setSelectionBackground(new Color(200, 230, 255));
-        
+
         // Điều chỉnh độ rộng các cột (nếu cần)
         table.getColumnModel().getColumn(0).setPreferredWidth(60);  // Mã NV
         table.getColumnModel().getColumn(1).setPreferredWidth(150); // Họ tên
@@ -213,7 +243,7 @@ public class StaffManagerPanel extends JPanel {
             String phone = s.getPhone() != null ? s.getPhone() : "(Không xác định)";
             String email = s.getEmail() != null ? s.getEmail() : "(Không xác định)";
             tableModel.addRow(new Object[]{
-                    s.getId(), name, position, phone, email
+                s.getId(), name, position, phone, email
             });
         }
         clearInputFields(); // Xóa trắng ô nhập sau khi tải lại
@@ -228,10 +258,10 @@ public class StaffManagerPanel extends JPanel {
             }
             // Tạo đối tượng Staff đúng thứ tự constructor (id, name, position, phone, email)
             Staff s = new Staff(0,
-                tfName.getText().trim(),
-                cbPosition.getSelectedItem().toString(),
-                tfPhone.getText().trim(),
-                tfEmail.getText().trim()
+                    tfName.getText().trim(),
+                    cbPosition.getSelectedItem().toString(),
+                    tfPhone.getText().trim(),
+                    tfEmail.getText().trim()
             );
             if (staffDAO.insertStaff(s)) {
                 JOptionPane.showMessageDialog(this, "Thêm nhân viên thành công!");
@@ -260,11 +290,11 @@ public class StaffManagerPanel extends JPanel {
             }
             // Tạo đối tượng Staff đúng thứ tự constructor (id, name, position, phone, email)
             Staff s = new Staff(
-                Integer.parseInt(tfStaffId.getText()),
-                tfName.getText().trim(),
-                cbPosition.getSelectedItem().toString(),
-                tfPhone.getText().trim(),
-                tfEmail.getText().trim()
+                    Integer.parseInt(tfStaffId.getText()),
+                    tfName.getText().trim(),
+                    cbPosition.getSelectedItem().toString(),
+                    tfPhone.getText().trim(),
+                    tfEmail.getText().trim()
             );
             if (staffDAO.updateStaff(s)) {
                 JOptionPane.showMessageDialog(this, "Cập nhật thành công!");
@@ -321,7 +351,7 @@ public class StaffManagerPanel extends JPanel {
     private void searchStaff() {
         // Lấy từ khóa tìm kiếm và chuyển về chữ thường
         String keyword = tfSearch.getText().trim().toLowerCase();
-         // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
+        // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
         if (keyword.isEmpty()) {
             loadStaffs(); // Tải lại toàn bộ danh sách nếu ô tìm kiếm trống
             return;
@@ -333,18 +363,18 @@ public class StaffManagerPanel extends JPanel {
         // Duyệt qua danh sách nhân viên để tìm kiếm
         for (Staff s : staffs) {
             // Kiểm tra nếu từ khóa khớp với bất kỳ trường nào (ID, tên, SĐT, email, chức vụ)
-            if (String.valueOf(s.getId()).contains(keyword) ||
-                s.getName().toLowerCase().contains(keyword) ||
-                s.getPosition().toLowerCase().contains(keyword) ||
-                s.getPhone().toLowerCase().contains(keyword) ||
-                s.getEmail().toLowerCase().contains(keyword)) {
+            if (String.valueOf(s.getId()).contains(keyword)
+                    || s.getName().toLowerCase().contains(keyword)
+                    || s.getPosition().toLowerCase().contains(keyword)
+                    || s.getPhone().toLowerCase().contains(keyword)
+                    || s.getEmail().toLowerCase().contains(keyword)) {
                 // Thêm hàng dữ liệu nếu khớp
                 tableModel.addRow(new Object[]{
-                        s.getId(),
-                        s.getName(),
-                        s.getPosition(),
-                        s.getPhone(),
-                        s.getEmail()
+                    s.getId(),
+                    s.getName(),
+                    s.getPosition(),
+                    s.getPhone(),
+                    s.getEmail()
                 });
             }
         }
@@ -353,27 +383,34 @@ public class StaffManagerPanel extends JPanel {
     // ====== CLASS BO GÓC CHO Ô NHẬP ======
     // Lớp nội bộ để tạo hiệu ứng bo tròn cho viền các ô nhập liệu
     static class RoundedBorder extends AbstractBorder {
+
         private int radius;
-        RoundedBorder(int radius) { this.radius = radius; }
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             // Vẽ hình chữ nhật bo góc
             g.setColor(Color.LIGHT_GRAY);
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
+
         @Override
         public Insets getBorderInsets(Component c) {
             // Điều chỉnh khoảng cách nội dung bên trong border
-            return new Insets(this.radius+1, this.radius+1, this.radius+1, this.radius+1);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
         }
+
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             // Điều chỉnh khoảng cách nội dung bên trong border (override)
-            insets.left = insets.right = insets.top = insets.bottom = this.radius+1;
+            insets.left = insets.right = insets.top = insets.bottom = this.radius + 1;
             return insets;
         }
     }
-    
+
     // Phương thức tiện ích để xóa trắng các ô nhập liệu và bật lại ô ID
     private void clearInputFields() {
         tfStaffId.setText("");
@@ -402,4 +439,4 @@ public class StaffManagerPanel extends JPanel {
             }
         }
     }
-} 
+}
