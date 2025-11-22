@@ -84,21 +84,43 @@ public class CategoryManagerPanel extends JPanel {
         }
 
         // Thêm các components vào panel nhập liệu với GridBagLayout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Mã Danh mục:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfId, gbc);
 
-        gbc.gridx = 2; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Label
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Tên Danh mục:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 0; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 0.5; // Field
+        gbc.gridx = 3;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 0.5; // Field
         inputPanel.add(tfName, gbc);
 
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.NORTHWEST; gbc.weightx = 0; // Label
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.NORTHWEST;
+        gbc.weightx = 0; // Label
         inputPanel.add(new JLabel("Mô tả:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 1; gbc.gridwidth = 3; gbc.fill = GridBagConstraints.BOTH; gbc.weightx = 1.0; gbc.weighty = 1.0; // Field
+        gbc.gridx = 1;
+        gbc.gridy = 1;
+        gbc.gridwidth = 3;
+        gbc.fill = GridBagConstraints.BOTH;
+        gbc.weightx = 1.0;
+        gbc.weighty = 1.0; // Field
         inputPanel.add(spDescription, gbc); // Thêm JScrollPane chứa JTextArea
-        gbc.gridwidth = 1; gbc.fill = GridBagConstraints.HORIZONTAL; gbc.weighty = 0; // Reset constraints
+        gbc.gridwidth = 1;
+        gbc.fill = GridBagConstraints.HORIZONTAL;
+        gbc.weighty = 0; // Reset constraints
 
         // ====== GỘP PANEL TÌM KIẾM VÀ NHẬP LIỆU Ở TRÊN ======
         // Tạo panel chứa cả searchPanel và inputPanel và đặt ở phía trên cùng của panel chính
@@ -110,7 +132,7 @@ public class CategoryManagerPanel extends JPanel {
         // ====== BẢNG HIỂN THỊ DỮ LIỆU ======
         // Khởi tạo tableModel với các cột và không cho phép sửa trực tiếp
         tableModel = new DefaultTableModel(new String[]{
-                "Mã Danh mục", "Tên Danh mục", "Mô tả"
+            "Mã Danh mục", "Tên Danh mục", "Mô tả"
         }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -130,7 +152,7 @@ public class CategoryManagerPanel extends JPanel {
         table.getColumnModel().getColumn(0).setPreferredWidth(80);  // Mã Danh mục
         table.getColumnModel().getColumn(1).setPreferredWidth(200); // Tên Danh mục
         table.getColumnModel().getColumn(2).setPreferredWidth(300); // Mô tả
-        
+
         // Thêm thanh cuộn cho bảng
         JScrollPane scrollPane = new JScrollPane(table);
         // Đặt bảng vào giữa panel chính
@@ -199,7 +221,7 @@ public class CategoryManagerPanel extends JPanel {
             String name = c.getName() != null ? c.getName() : "(Không xác định)";
             String description = c.getDescription() != null ? c.getDescription() : "(Không xác định)";
             tableModel.addRow(new Object[]{
-                    c.getId(), name, description
+                c.getId(), name, description
             });
         }
         clearInputFields(); // Xóa trắng ô nhập sau khi tải lại
@@ -208,10 +230,10 @@ public class CategoryManagerPanel extends JPanel {
     // Phương thức xử lý thêm danh mục mới
     private void addCategory() {
         try {
-             // Kiểm tra các trường bắt buộc
+            // Kiểm tra các trường bắt buộc
             if (tfName.getText().trim().isEmpty() || taDescription.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên Danh mục, Mô tả).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên Danh mục, Mô tả).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Category từ dữ liệu nhập liệu (luôn dùng ID 0 cho thêm mới)
             Category c = new Category(0,
@@ -239,15 +261,15 @@ public class CategoryManagerPanel extends JPanel {
     // Phương thức xử lý cập nhật thông tin danh mục
     private void updateCategory() {
         try {
-             // Kiểm tra xem đã chọn danh mục từ bảng chưa
-             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn danh mục cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
-              // Kiểm tra các trường bắt buộc
+            // Kiểm tra xem đã chọn danh mục từ bảng chưa
+            if (tfId.getText().isEmpty()) {
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn danh mục cần cập nhật từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
+            // Kiểm tra các trường bắt buộc
             if (tfName.getText().trim().isEmpty() || taDescription.getText().trim().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên Danh mục, Mô tả).", "Lỗi", JOptionPane.ERROR_MESSAGE);
-                 return;
+                JOptionPane.showMessageDialog(this, "Vui lòng điền đầy đủ thông tin (Tên Danh mục, Mô tả).", "Lỗi", JOptionPane.ERROR_MESSAGE);
+                return;
             }
             // Tạo đối tượng Category từ dữ liệu nhập liệu (bao gồm ID)
             Category c = new Category(
@@ -268,7 +290,7 @@ public class CategoryManagerPanel extends JPanel {
                 JOptionPane.showMessageDialog(this, "Cập nhật thất bại.");
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã danh mục không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã danh mục không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi cập nhật danh mục: " + ex.getMessage());
@@ -278,11 +300,11 @@ public class CategoryManagerPanel extends JPanel {
     // Phương thức xử lý xóa danh mục
     private void deleteCategory() {
         try {
-             // Kiểm tra xem đã chọn danh mục từ bảng chưa
+            // Kiểm tra xem đã chọn danh mục từ bảng chưa
             if (tfId.getText().isEmpty()) {
-                 JOptionPane.showMessageDialog(this, "Vui lòng chọn danh mục cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
-                 return;
-             }
+                JOptionPane.showMessageDialog(this, "Vui lòng chọn danh mục cần xóa từ bảng.", "Cảnh báo", JOptionPane.WARNING_MESSAGE);
+                return;
+            }
             // Lấy ID danh mục cần xóa
             int id = Integer.parseInt(tfId.getText());
             // Hiển thị hộp thoại xác nhận xóa
@@ -303,7 +325,7 @@ public class CategoryManagerPanel extends JPanel {
                 }
             }
         } catch (NumberFormatException ex) {
-             JOptionPane.showMessageDialog(this, "Mã danh mục không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Mã danh mục không hợp lệ: " + ex.getMessage(), "Lỗi", JOptionPane.ERROR_MESSAGE);
         } catch (Exception ex) {
             // Xử lý lỗi và hiển thị thông báo lỗi
             JOptionPane.showMessageDialog(this, "Lỗi khi xóa danh mục: " + ex.getMessage());
@@ -314,7 +336,7 @@ public class CategoryManagerPanel extends JPanel {
     private void searchCategory() {
         // Lấy từ khóa tìm kiếm và chuyển về chữ thường
         String keyword = tfSearch.getText().trim().toLowerCase();
-         // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
+        // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
         if (keyword.isEmpty()) {
             loadCategories(); // Tải lại toàn bộ danh sách nếu ô tìm kiếm trống
             return;
@@ -326,14 +348,14 @@ public class CategoryManagerPanel extends JPanel {
         // Duyệt qua danh sách danh mục để tìm kiếm
         for (Category c : categories) {
             // Kiểm tra nếu từ khóa khớp với bất kỳ trường nào (ID, tên, mô tả)
-            if (String.valueOf(c.getId()).contains(keyword) ||
-                c.getName().toLowerCase().contains(keyword) ||
-                c.getDescription().toLowerCase().contains(keyword)) {
+            if (String.valueOf(c.getId()).contains(keyword)
+                    || c.getName().toLowerCase().contains(keyword)
+                    || c.getDescription().toLowerCase().contains(keyword)) {
                 // Thêm hàng dữ liệu nếu khớp
                 String name = c.getName() != null ? c.getName() : "(Không xác định)";
                 String description = c.getDescription() != null ? c.getDescription() : "(Không xác định)";
                 tableModel.addRow(new Object[]{
-                        c.getId(), name, description
+                    c.getId(), name, description
                 });
             }
         }
@@ -342,27 +364,34 @@ public class CategoryManagerPanel extends JPanel {
     // ====== CLASS BO GÓC CHO Ô NHẬP ======
     // Lớp nội bộ để tạo hiệu ứng bo tròn cho viền các ô nhập liệu
     static class RoundedBorder extends AbstractBorder {
+
         private int radius;
-        RoundedBorder(int radius) { this.radius = radius; }
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
+        }
+
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             // Vẽ hình chữ nhật bo góc
             g.setColor(Color.LIGHT_GRAY);
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
+
         @Override
         public Insets getBorderInsets(Component c) {
             // Điều chỉnh khoảng cách nội dung bên trong border
-            return new Insets(this.radius+1, this.radius+1, this.radius+1, this.radius+1);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
         }
+
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             // Điều chỉnh khoảng cách nội dung bên trong border (override)
-            insets.left = insets.right = insets.top = insets.bottom = this.radius+1;
+            insets.left = insets.right = insets.top = insets.bottom = this.radius + 1;
             return insets;
         }
     }
-    
+
     // Phương thức tiện ích để xóa trắng các ô nhập liệu và bật lại ô ID
     private void clearInputFields() {
         tfId.setText("");
@@ -389,4 +418,4 @@ public class CategoryManagerPanel extends JPanel {
             }
         }
     }
-} 
+}
