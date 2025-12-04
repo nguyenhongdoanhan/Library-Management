@@ -9,16 +9,16 @@ import TheLoai.Category;
 import TheLoai.CategoryDAO;
 
 import javax.swing.*;
-import javax.swing.border.*; 
+import javax.swing.border.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.List;
 
 /**
- * Panel quản lý thông tin Sách trong hệ thống thư viện
- * Bao gồm các chức năng: Thêm, Sửa, Xóa, Tìm kiếm sách
- * Tích hợp với các bảng liên quan: Tác giả, Nhà xuất bản, Thể loại
+ * Panel quản lý thông tin Sách trong hệ thống thư viện Bao gồm các chức năng:
+ * Thêm, Sửa, Xóa, Tìm kiếm sách Tích hợp với các bảng liên quan: Tác giả, Nhà
+ * xuất bản, Thể loại
  */
 public class BookManagerPanel extends JPanel {
 
@@ -35,8 +35,8 @@ public class BookManagerPanel extends JPanel {
     private CategoryDAO categoryDAO = new CategoryDAO(); // DAO để tương tác với cơ sở dữ liệu thể loại
 
     /**
-     * Constructor của lớp BookManagerPanel
-     * Khởi tạo giao diện và các thành phần cần thiết
+     * Constructor của lớp BookManagerPanel Khởi tạo giao diện và các thành phần
+     * cần thiết
      */
     public BookManagerPanel() {
         // Thiết lập layout cho panel chính là BorderLayout
@@ -91,8 +91,12 @@ public class BookManagerPanel extends JPanel {
         // Load dữ liệu vào ComboBox từ các DAO tương ứng
         AuthorDAO authorDAO = new AuthorDAO();
         PublisherDAO publisherDAO = new PublisherDAO();
-        for (Author a : authorDAO.getAllAuthors()) cbAuthor.addItem(a);
-        for (Publisher p : publisherDAO.getAllPublishers()) cbPublisher.addItem(p);
+        for (Author a : authorDAO.getAllAuthors()) {
+            cbAuthor.addItem(a);
+        }
+        for (Publisher p : publisherDAO.getAllPublishers()) {
+            cbPublisher.addItem(p);
+        }
 
         // Bo góc cho các ô nhập liệu và ComboBox
         JTextField[] fields = {tfId, tfTitle, tfYear, tfPrice, tfStock};
@@ -105,45 +109,87 @@ public class BookManagerPanel extends JPanel {
         cbCategory.setBackground(Color.WHITE);
 
         // Thêm các components vào panel nhập liệu với GridBagLayout
-        gbc.gridx = 0; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; // Align label to the right
+        gbc.gridx = 0;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST; // Align label to the right
         gbc.weightx = 0; // Label doesn't need extra horizontal space
         inputPanel.add(new JLabel("Mã sách:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Align field to the left and give it weight
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Align field to the left and give it weight
         inputPanel.add(tfId, gbc);
-        
-        gbc.gridx = 2; gbc.gridy = 0; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 2;
+        gbc.gridy = 0;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Tên sách:"), gbc);
-        gbc.gridx = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(tfTitle, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 0;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Tác giả:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(cbAuthor, gbc);
-        
-        gbc.gridx = 2; gbc.gridy = 1; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 2;
+        gbc.gridy = 1;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("NXB:"), gbc);
-        gbc.gridx = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(cbPublisher, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 0;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Thể loại:"), gbc);
-        gbc.gridx = 1; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 1;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(cbCategory, gbc);
-        
-        gbc.gridx = 2; gbc.gridy = 2; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 2;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Năm XB:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 2; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 3;
+        gbc.gridy = 2;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(tfYear, gbc);
-        
-        gbc.gridx = 0; gbc.gridy = 3; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 0;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Giá:"), gbc);
-        gbc.gridx = 1; gbc.gridy = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 1;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(tfPrice, gbc);
-        
-        gbc.gridx = 2; gbc.gridy = 3; gbc.anchor = GridBagConstraints.EAST; gbc.weightx = 0; // Reset weight for label
+
+        gbc.gridx = 2;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.EAST;
+        gbc.weightx = 0; // Reset weight for label
         inputPanel.add(new JLabel("Tồn kho:"), gbc);
-        gbc.gridx = 3; gbc.gridy = 3; gbc.anchor = GridBagConstraints.WEST; gbc.weightx = 1.0; // Give weight to field
+        gbc.gridx = 3;
+        gbc.gridy = 3;
+        gbc.anchor = GridBagConstraints.WEST;
+        gbc.weightx = 1.0; // Give weight to field
         inputPanel.add(tfStock, gbc);
 
         // ====== GỘP PANEL TÌM KIẾM VÀ NHẬP LIỆU Ở TRÊN ======
@@ -156,7 +202,7 @@ public class BookManagerPanel extends JPanel {
         // ====== BẢNG HIỂN THỊ DỮ LIỆU ======
         // Khởi tạo tableModel với các cột và không cho phép sửa trực tiếp
         tableModel = new DefaultTableModel(new String[]{
-                "Mã sách", "Tiêu đề", "Tác giả", "Nhà xuất bản", "Năm xuất bản", "Thể loại", "Giá", "Tồn kho"
+            "Mã sách", "Tiêu đề", "Tác giả", "Nhà xuất bản", "Năm xuất bản", "Thể loại", "Giá", "Tồn kho"
         }, 0) {
             @Override
             public boolean isCellEditable(int row, int column) {
@@ -171,7 +217,7 @@ public class BookManagerPanel extends JPanel {
         table.setFont(new Font("Segoe UI", Font.PLAIN, 14));
         table.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 14));
         table.setSelectionBackground(new Color(200, 230, 255));
-        
+
         // Điều chỉnh độ rộng các cột
         table.getColumnModel().getColumn(0).setPreferredWidth(50);  // Mã sách
         table.getColumnModel().getColumn(1).setPreferredWidth(250); // Tiêu đề
@@ -181,7 +227,7 @@ public class BookManagerPanel extends JPanel {
         table.getColumnModel().getColumn(5).setPreferredWidth(80);  // Thể loại
         table.getColumnModel().getColumn(6).setPreferredWidth(100); // Giá
         table.getColumnModel().getColumn(7).setPreferredWidth(100); // Tồn kho
-        
+
         // Thêm thanh cuộn cho bảng
         JScrollPane scrollPane = new JScrollPane(table);
         // Đặt bảng vào giữa panel chính
@@ -251,9 +297,9 @@ public class BookManagerPanel extends JPanel {
     }
 
     /**
-     * Phương thức tải danh sách sách từ database và hiển thị lên bảng
-     * Lấy dữ liệu từ BookDAO và các DAO liên quan (Author, Publisher, Category)
-     * để hiển thị đầy đủ thông tin sách
+     * Phương thức tải danh sách sách từ database và hiển thị lên bảng Lấy dữ
+     * liệu từ BookDAO và các DAO liên quan (Author, Publisher, Category) để
+     * hiển thị đầy đủ thông tin sách
      */
     private void loadBooks() {
         // Lấy danh sách sách từ DAO
@@ -293,31 +339,31 @@ public class BookManagerPanel extends JPanel {
             }
             // Thêm hàng dữ liệu vào bảng
             tableModel.addRow(new Object[]{
-                    b.getId(), b.getTitle(), authorName, publisherName, b.getYear(), categoryName,
-                    b.getPrice(), b.getStock()
+                b.getId(), b.getTitle(), authorName, publisherName, b.getYear(), categoryName,
+                b.getPrice(), b.getStock()
             });
         }
         clearInputFields(); // Xóa trắng ô nhập sau khi tải lại
     }
 
     /**
-     * Phương thức xử lý thêm sách mới
-     * Kiểm tra dữ liệu đầu vào và thêm vào database
+     * Phương thức xử lý thêm sách mới Kiểm tra dữ liệu đầu vào và thêm vào
+     * database
      */
     private void addBook() {
         try {
             // Kiểm tra các trường bắt buộc
-            if (tfTitle.getText().trim().isEmpty() || 
-                cbAuthor.getSelectedItem() == null || 
-                cbPublisher.getSelectedItem() == null || 
-                cbCategory.getSelectedItem() == null || 
-                tfYear.getText().trim().isEmpty() || 
-                tfPrice.getText().trim().isEmpty() || 
-                tfStock.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng điền đầy đủ thông tin sách.", 
-                    "Lỗi", 
-                    JOptionPane.ERROR_MESSAGE);
+            if (tfTitle.getText().trim().isEmpty()
+                    || cbAuthor.getSelectedItem() == null
+                    || cbPublisher.getSelectedItem() == null
+                    || cbCategory.getSelectedItem() == null
+                    || tfYear.getText().trim().isEmpty()
+                    || tfPrice.getText().trim().isEmpty()
+                    || tfStock.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng điền đầy đủ thông tin sách.",
+                        "Lỗi",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -326,21 +372,21 @@ public class BookManagerPanel extends JPanel {
                 int year = Integer.parseInt(tfYear.getText().trim());
                 double price = Double.parseDouble(tfPrice.getText().trim());
                 int stock = Integer.parseInt(tfStock.getText().trim());
-                
+
                 // Kiểm tra giá trị hợp lệ
                 if (year < 0 || price < 0 || stock < 0) {
                     throw new NumberFormatException("Giá trị không được âm");
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng nhập đúng định dạng số cho năm, giá và tồn kho.", 
-                    "Lỗi", 
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng nhập đúng định dạng số cho năm, giá và tồn kho.",
+                        "Lỗi",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
             // Tạo đối tượng Book từ dữ liệu nhập liệu
-            Book b = new Book(0, 
+            Book b = new Book(0,
                     tfTitle.getText().trim(),
                     ((Author) cbAuthor.getSelectedItem()).getId(),
                     ((Publisher) cbPublisher.getSelectedItem()).getId(),
@@ -366,32 +412,32 @@ public class BookManagerPanel extends JPanel {
     }
 
     /**
-     * Phương thức xử lý cập nhật thông tin sách
-     * Kiểm tra dữ liệu đầu vào và cập nhật vào database
+     * Phương thức xử lý cập nhật thông tin sách Kiểm tra dữ liệu đầu vào và cập
+     * nhật vào database
      */
     private void updateBook() {
         try {
             // Kiểm tra xem đã chọn sách từ bảng chưa
             if (tfId.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng chọn sách cần cập nhật từ bảng.", 
-                    "Cảnh báo", 
-                    JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng chọn sách cần cập nhật từ bảng.",
+                        "Cảnh báo",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             // Kiểm tra các trường bắt buộc
-            if (tfTitle.getText().trim().isEmpty() || 
-                cbAuthor.getSelectedItem() == null || 
-                cbPublisher.getSelectedItem() == null || 
-                cbCategory.getSelectedItem() == null || 
-                tfYear.getText().trim().isEmpty() || 
-                tfPrice.getText().trim().isEmpty() || 
-                tfStock.getText().trim().isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng điền đầy đủ thông tin sách.", 
-                    "Lỗi", 
-                    JOptionPane.ERROR_MESSAGE);
+            if (tfTitle.getText().trim().isEmpty()
+                    || cbAuthor.getSelectedItem() == null
+                    || cbPublisher.getSelectedItem() == null
+                    || cbCategory.getSelectedItem() == null
+                    || tfYear.getText().trim().isEmpty()
+                    || tfPrice.getText().trim().isEmpty()
+                    || tfStock.getText().trim().isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng điền đầy đủ thông tin sách.",
+                        "Lỗi",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -400,16 +446,16 @@ public class BookManagerPanel extends JPanel {
                 int year = Integer.parseInt(tfYear.getText().trim());
                 double price = Double.parseDouble(tfPrice.getText().trim());
                 int stock = Integer.parseInt(tfStock.getText().trim());
-                
+
                 // Kiểm tra giá trị hợp lệ
                 if (year < 0 || price < 0 || stock < 0) {
                     throw new NumberFormatException("Giá trị không được âm");
                 }
             } catch (NumberFormatException ex) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng nhập đúng định dạng số cho năm, giá và tồn kho.", 
-                    "Lỗi", 
-                    JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng nhập đúng định dạng số cho năm, giá và tồn kho.",
+                        "Lỗi",
+                        JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
@@ -441,29 +487,28 @@ public class BookManagerPanel extends JPanel {
     }
 
     /**
-     * Phương thức xử lý xóa sách
-     * Kiểm tra và xóa sách khỏi database
+     * Phương thức xử lý xóa sách Kiểm tra và xóa sách khỏi database
      */
     private void deleteBook() {
         try {
             // Kiểm tra xem đã chọn sách từ bảng chưa
             if (tfId.getText().isEmpty()) {
-                JOptionPane.showMessageDialog(this, 
-                    "Vui lòng chọn sách cần xóa từ bảng.", 
-                    "Cảnh báo", 
-                    JOptionPane.WARNING_MESSAGE);
+                JOptionPane.showMessageDialog(this,
+                        "Vui lòng chọn sách cần xóa từ bảng.",
+                        "Cảnh báo",
+                        JOptionPane.WARNING_MESSAGE);
                 return;
             }
 
             // Lấy ID sách cần xóa
             int id = Integer.parseInt(tfId.getText().trim());
-            
+
             // Hiển thị hộp thoại xác nhận xóa
-            int confirm = JOptionPane.showConfirmDialog(this, 
-                "Bạn có chắc chắn muốn xóa sách này?", 
-                "Xác nhận xóa", 
-                JOptionPane.YES_NO_OPTION);
-            
+            int confirm = JOptionPane.showConfirmDialog(this,
+                    "Bạn có chắc chắn muốn xóa sách này?",
+                    "Xác nhận xóa",
+                    JOptionPane.YES_NO_OPTION);
+
             // Nếu người dùng xác nhận xóa
             if (confirm == JOptionPane.YES_OPTION) {
                 // Gọi phương thức delete của DAO
@@ -483,13 +528,13 @@ public class BookManagerPanel extends JPanel {
     }
 
     /**
-     * Phương thức xử lý tìm kiếm sách
-     * Tìm kiếm theo từ khóa trong tất cả các trường
+     * Phương thức xử lý tìm kiếm sách Tìm kiếm theo từ khóa trong tất cả các
+     * trường
      */
     private void searchBook() {
         // Lấy từ khóa tìm kiếm và chuyển về chữ thường
         String keyword = tfSearch.getText().trim().toLowerCase();
-        
+
         // Nếu từ khóa rỗng, tải lại toàn bộ danh sách
         if (keyword.isEmpty()) {
             loadBooks();
@@ -504,13 +549,13 @@ public class BookManagerPanel extends JPanel {
 
         // Xóa dữ liệu cũ trên bảng
         tableModel.setRowCount(0);
-        
+
         // Duyệt qua danh sách sách để tìm kiếm
         for (Book b : books) {
             String authorName = "(Không xác định)";
             String publisherName = "(Không xác định)";
             String categoryName = "(Không xác định)";
-            
+
             // Tìm tên tác giả tương ứng với ID
             for (Author a : authorDAO.getAllAuthors()) {
                 if (a.getId() == b.getAuthorId()) {
@@ -518,7 +563,7 @@ public class BookManagerPanel extends JPanel {
                     break;
                 }
             }
-            
+
             // Tìm tên nhà xuất bản tương ứng với ID
             for (Publisher p : publisherDAO.getAllPublishers()) {
                 if (p.getId() == b.getPublisherId()) {
@@ -526,7 +571,7 @@ public class BookManagerPanel extends JPanel {
                     break;
                 }
             }
-            
+
             // Tìm tên thể loại tương ứng với ID
             for (Category c : categoryDAO.getAllCategories()) {
                 if (c.getId() == b.getCategoryId()) {
@@ -536,19 +581,19 @@ public class BookManagerPanel extends JPanel {
             }
 
             // Kiểm tra nếu từ khóa khớp với bất kỳ trường nào
-            if (String.valueOf(b.getId()).contains(keyword) ||
-                b.getTitle().toLowerCase().contains(keyword) ||
-                authorName.toLowerCase().contains(keyword) ||
-                publisherName.toLowerCase().contains(keyword) ||
-                categoryName.toLowerCase().contains(keyword) ||
-                String.valueOf(b.getYear()).contains(keyword) ||
-                String.valueOf(b.getPrice()).contains(keyword) ||
-                String.valueOf(b.getStock()).contains(keyword)) {
-                
+            if (String.valueOf(b.getId()).contains(keyword)
+                    || b.getTitle().toLowerCase().contains(keyword)
+                    || authorName.toLowerCase().contains(keyword)
+                    || publisherName.toLowerCase().contains(keyword)
+                    || categoryName.toLowerCase().contains(keyword)
+                    || String.valueOf(b.getYear()).contains(keyword)
+                    || String.valueOf(b.getPrice()).contains(keyword)
+                    || String.valueOf(b.getStock()).contains(keyword)) {
+
                 // Thêm hàng dữ liệu nếu khớp
                 tableModel.addRow(new Object[]{
-                        b.getId(), b.getTitle(), authorName, publisherName, b.getYear(), categoryName,
-                        b.getPrice(), b.getStock()
+                    b.getId(), b.getTitle(), authorName, publisherName, b.getYear(), categoryName,
+                    b.getPrice(), b.getStock()
                 });
             }
         }
@@ -558,35 +603,37 @@ public class BookManagerPanel extends JPanel {
      * Lớp nội bộ để tạo hiệu ứng bo tròn cho viền các ô nhập liệu
      */
     static class RoundedBorder extends AbstractBorder {
+
         private int radius;
-        
-        RoundedBorder(int radius) { 
-            this.radius = radius; 
+
+        RoundedBorder(int radius) {
+            this.radius = radius;
         }
-        
+
         @Override
         public void paintBorder(Component c, Graphics g, int x, int y, int width, int height) {
             // Vẽ hình chữ nhật bo góc
             g.setColor(Color.LIGHT_GRAY);
             g.drawRoundRect(x, y, width - 1, height - 1, radius, radius);
         }
-        
+
         @Override
         public Insets getBorderInsets(Component c) {
             // Điều chỉnh khoảng cách nội dung bên trong border
-            return new Insets(this.radius+1, this.radius+1, this.radius+1, this.radius+1);
+            return new Insets(this.radius + 1, this.radius + 1, this.radius + 1, this.radius + 1);
         }
-        
+
         @Override
         public Insets getBorderInsets(Component c, Insets insets) {
             // Điều chỉnh khoảng cách nội dung bên trong border (override)
-            insets.left = insets.right = insets.top = insets.bottom = this.radius+1;
+            insets.left = insets.right = insets.top = insets.bottom = this.radius + 1;
             return insets;
         }
     }
 
     /**
      * Phương thức helper để chọn item trong JComboBox dựa trên tên hiển thị
+     *
      * @param comboBox ComboBox cần chọn item
      * @param name Tên của item cần chọn
      */
@@ -595,12 +642,16 @@ public class BookManagerPanel extends JPanel {
         for (int i = 0; i < comboBox.getItemCount(); i++) {
             Object item = comboBox.getItemAt(i);
             String itemName = "";
-            
+
             // Lấy tên của item (tùy thuộc vào kiểu dữ liệu)
-            if (item instanceof Author) itemName = ((Author) item).getName();
-            else if (item instanceof Publisher) itemName = ((Publisher) item).getName();
-            else if (item instanceof Category) itemName = ((Category) item).getName();
-            
+            if (item instanceof Author) {
+                itemName = ((Author) item).getName();
+            } else if (item instanceof Publisher) {
+                itemName = ((Publisher) item).getName();
+            } else if (item instanceof Category) {
+                itemName = ((Category) item).getName();
+            }
+
             // Nếu tên khớp với tên cần chọn
             if (itemName.equals(name)) {
                 // Chọn item đó trong ComboBox
