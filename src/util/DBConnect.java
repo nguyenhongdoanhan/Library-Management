@@ -1,22 +1,25 @@
-// Lớp DBConnect giúp kết nối tới cơ sở dữ liệu MySQL
 package util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
 
-public class DBConnect {              // protocol  //Địa chỉ máy chủ cơ sở dữ liệu      //3306 là cổng và library là tên sql
-    private static final String URL = "jdbc:mysql://localhost:3306/library"; // chuỗi kết nối đến cơ sở dữ liệu MySQL
-    private static final String USER = "root";                  
-    private static final String PASSWORD = "0905632186aA"; // pass MySQL 
+public class DBConnect {
 
-    // Hàm trả về kết nối CSDL, nếu lỗi thì in ra và trả về null
+    private static final String URL = "jdbc:mysql://yamabiko.proxy.rlwy.net:37413/railway?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC";
+    private static final String USER = "root";
+    private static final String PASSWORD = "ioJPGNLqAxQCJVoUsKlGgluXdnvzbGjJ";
+
     public static Connection getConnection() {
         try {
-            // Nạp driver JDBC cho MySQL
             Class.forName("com.mysql.cj.jdbc.Driver");
-            return DriverManager.getConnection(URL, USER, PASSWORD);
+            Connection conn = DriverManager.getConnection(URL, USER, PASSWORD);
+            System.out.println("KET NOI THANH CONG!");
+            return conn;
         } catch (Exception e) {
-            e.printStackTrace(); // In lỗi ra console
+            System.out.println("❌ LOI KET NOI DATABASE:");
+            System.out.println("URL = " + URL);
+            System.out.println("USER = " + USER);
+            e.printStackTrace();
             return null;
         }
     }
